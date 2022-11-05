@@ -1,17 +1,27 @@
 const app = require("./app");
 const dotevn = require("dotenv");
 const connectDatabase = require("./db/Database.js");
+const cloudinary = require("cloudinary");
 
 // Handling uncaught Exception
 process.on("uncaughtException",(err) =>{
     console.log(`Error: ${err.message}`);
     console.log(`Shutting down the server for Handling uncaught Exception`);
 })
-// config
-dotevn.config({path:"backend/config/.env"})
 
+// config
+if(process.env.NODE_ENV!=="PRODUCTION"){
+require("dotenv").config({
+    path:"backend/config/.env"
+})}
 // connect database
 connectDatabase();
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+})
 
 // create server
 const server = app.listen(process.env.PORT,() =>{

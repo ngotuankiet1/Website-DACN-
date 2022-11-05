@@ -34,7 +34,7 @@ iframe {
 h1,h2,h3,h4,h5,h6,span,p,strong{
   font-family: sans-serif;
 }
-div {overflow: hidden;}
+/* div {overflow: hidden;} */
 h6{
   font-size: 15px;
 }
