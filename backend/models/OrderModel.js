@@ -29,51 +29,51 @@ const orderSchema = new mongoose.Schema({
   },
   orderItems: [
     {
-      productName: {
+      name: {
         type: String,
-        // required: true,
+        required: true,
       },
-      productPrice: {
+      price: {
         type: Number,
-        // required: true,
+        required: true,
       },
       quantity: {
         type: Number,
-        // required: true,
+        required: true,
       },
-      productImage: {
+      image: {
         type: String,
-        // required: true,
+        required: true,
       },
-      productId: {
+      product: {
         type: mongoose.Schema.ObjectId,
         ref: "Product",
-        // required: true,
+        required: true,
       },
     },
   ],
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
-    // required: true,
+    required: true,
   },
   paymentInfo: {
     id: {
       type: String,
-      // required: true,
+      required: true,
     },
     status: {
       type: String,
-      // required: true,
+      required: true,
     },
   },
   paidAt: {
     type: Date,
-    // required: true,
+    required: true,
   },
   itemsPrice: {
     type: Number,
-    // required: true,
+    required: true,
     default: 0,
   },
   taxPrice: {
@@ -82,17 +82,17 @@ const orderSchema = new mongoose.Schema({
   },
   shippingPrice: {
     type: Number,
-    // required: true,
+    required: true,
     default: 0,
   },
   totalPrice: {
     type: Number,
-    // required: true,
+    required: true,
     default: 0,
   },
   orderStatus: {
     type: String,
-    // required: true,
+    required: true,
     default: "Processing",
   },
   deliveredAt: Date,

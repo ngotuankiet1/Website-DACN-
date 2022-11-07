@@ -4,10 +4,8 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Features = require("../utils/Features");
 const cloudinary = require("cloudinary");
 
-//create product
+// create Product --Admin
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.create(req.body);
-
   let images = [];
 
   if (typeof req.body.images === "string") {
@@ -32,9 +30,21 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
   req.body.images = imagesLinks;
   req.body.user = req.user.id;
 
+  const product = await Product.create(req.body);
+
   res.status(201).json({
     success: true,
     product,
+  });
+});
+
+// Get All Product (Admin)
+exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
+  const products = await Product.find();
+
+  res.status(200).json({
+    success: true,
+    products,
   });
 });
 
@@ -57,11 +67,9 @@ exports.getAllProducts = catchAsyncErrors(async (req, res) => {
   });
 });
 
-
 // Update Product ---Admin
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
-
   if (!product) {
     return next(new ErrorHandler("Product is not found with this id", 404));
   }
@@ -99,7 +107,6 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     runValidators: true,
     useUnified: false,
   });
-
   res.status(200).json({
     success: true,
     product,
@@ -122,6 +129,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
   }
 
   await product.remove();
+
   res.status(200).json({
     success: true,
     message: "Product deleted succesfully",
@@ -139,7 +147,6 @@ exports.getSingleProduct = catchAsyncErrors(async (req, res, next) => {
     product,
   });
 });
-
 
 // Create New Review or Update the review
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {

@@ -1,11 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { newReviewReducer, productDetailsReducer, productsReducer } from "./reducers/ProductReducer";
-import { profileReducer, userReducer } from "./reducers/userReducer";
+import { deleteProductReducer, deleteReviewReducer, newProductReducer, newReviewReducer, productDetailsReducer, productReviewsReducer, productsReducer } from "./reducers/ProductReducer";
+import { allUsersReducer, forgotPasswordReducer, profileReducer, userDetailsReducer, userReducer } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/CartReducer";
 import { favouriteReducer } from "./reducers/FavouriteReducer";
-import { newOrderReducer, orderDetailsReducer } from "./reducers/OrderReducer";
+import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer } from "./reducers/OrderReducer";
 
 const reducer = combineReducers({
   products: productsReducer,
@@ -15,8 +15,19 @@ const reducer = combineReducers({
   cart: cartReducer,
   favourite: favouriteReducer,
   order: newOrderReducer,
+  myOrder: myOrdersReducer,
   myOrderDetails: orderDetailsReducer,
   newReview: newReviewReducer,
+  createProduct: newProductReducer,
+  deleteProduct: deleteProductReducer,
+  AllOrders: allOrdersReducer,
+  deleteOrder: orderReducer,
+  allUsers: allUsersReducer,
+  userDetails: userDetailsReducer,
+  deleteReview: deleteReviewReducer,
+  productReviews: productReviewsReducer,
+  forgotPassword:forgotPasswordReducer,
+
 });
 
 let initialState = {

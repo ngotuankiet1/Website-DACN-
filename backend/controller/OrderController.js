@@ -116,6 +116,7 @@ exports.updateAdminOrder = catchAsyncErrors(async (req, res, next) => {
     await product.save({ validateBeforeSave: false });
   }
 
+
 // delete Order ---Admin
 exports.deleteOrder = catchAsyncErrors(async (req,res,next) =>{
 
@@ -131,4 +132,3 @@ exports.deleteOrder = catchAsyncErrors(async (req,res,next) =>{
         success: true,
     });
 });
-
